@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.io.*;
+import java.nio.file.Files;
+import java.util.*;
 
 // 37 (33)	47	107	117	147	207	247	287	347	393	399	427
 public class Main {
@@ -83,16 +82,16 @@ public class Main {
         return arr;
     }
 
-    public static void z_287(Integer[] arr){
+    public static void z_287(Integer[] arr) {
         List<Integer> list = new ArrayList<>(Arrays.asList(arr));
         int total_index = 0;
         ArrayList<Integer> list_index = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            if (i == 0){
+            if (i == 0) {
                 list_index.add(i);
                 continue;
             }
-            if (arr[i] != arr[i-1]){
+            if (arr[i] != arr[i - 1]) {
                 list_index.add(i);
             }
         }
@@ -100,7 +99,94 @@ public class Main {
             list.add(list_index.get(i) + total_index, 0);
             total_index += 1;
         }
-        System.out.printf(list.toString());
+        System.out.println(list.toString());
+    }
+
+    public static int z_347(Integer[][] matrix) {
+        int count = 0;
+
+        int col = matrix[0].length;
+        int row = matrix.length;
+
+        ArrayList<ArrayList<Integer>> T_matrix = new ArrayList<>(col);
+
+        // инициализация каждого элемента ArrayList другим ArrayList
+
+        for (int i = 0; i < col; i++) {
+            T_matrix.add(new ArrayList<>());
+        }
+
+        //транспанирую матрицу
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                T_matrix.get(j).add(i, matrix[i][j]);
+            }
+        }
+
+        //создаю множество из элементов последнего столбца исходной матрицы
+
+        Set<Integer> last_col = new HashSet<>();
+        for (int i = 0; i < T_matrix.get(0).size(); i++) {
+            last_col.add(T_matrix.get(T_matrix.size() - 1).get(i));
+        }
+
+        //выполняю условие задачи
+
+        for (int i = 0; i < T_matrix.size() - 1; i++) {
+            if (last_col.containsAll(T_matrix.get(i))) {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
+
+    public static void z_393(String s, String s1, String s2) {
+        int indx = s.lastIndexOf(s1);
+        System.out.println(s.substring(0, indx) + s2 + s.substring(indx + s1.length()));
+    }
+
+    public static void z_399(String text) {
+        int count = 0;
+        while (text.contains("  ")) {
+            text = text.replaceAll("  ", " ");
+        }
+        String[] arr = text.split(" ");
+        for (String s : arr) {
+            if (s.contains("А")) {
+                count += 1;
+            }
+        }
+        System.out.println(String.valueOf(count));
+    }
+
+    public static void z_427() {
+        try {
+            File file = new File("z427.txt");
+            File temp = File.createTempFile("temp", ".txt", file.getParentFile());
+
+            FileWriter fileWriter = new FileWriter(temp);
+            BufferedReader reader = Files.newBufferedReader(file.toPath());
+
+            String add_line = reader.readLine();
+            String line = null;
+
+            while (true) {
+
+                if ((line = reader.readLine()) == null) {
+                    break;
+                }
+                fileWriter.write(add_line + "\n");
+                add_line = line;
+            }
+            fileWriter.close();
+            reader.close();
+            file.delete();
+            temp.renameTo(file);
+        } catch (IOException error) {
+            System.out.println("ERROR: " + error);
+        }
     }
 
     public static void main(String[] args) {
@@ -163,15 +249,38 @@ public class Main {
         серия - группа подряд идущих одинаковых элементов
         длина серии - кол-во этих элементов (может быть равной 1)
          */
-        Integer [] array1 = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6};
+        Integer[] array1 = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6};
         z_287(array1); // 287
         /*
          -----------------------------------------------------------------------------
-        перед каждой серий элемент с нулевым значением 287
-        серия - группа подряд идущих одинаковых элементов
-        длина серии - кол-во этих элементов (может быть равной 1)
+        347 число столбцов похожих на последний
          */
-        
 
+        Integer[][] matrix = {
+                {1, 5, 1, 3, 5, 5, 6, 7, 8, 9, 5},
+                {2, 5, 1, 4, 5, 5, 6, 2, 3, 4, 5},
+                {6, 5, 4, 5, 5, 5, 1, 2, 3, 4, 5},
+                {1, 5, 1, 1, 5, 5, 4, 2, 3, 1, 5},
+                {4, 5, 6, 8, 5, 5, 3, 4, 1, 2, 5},
+        };
+        System.out.println(z_347(matrix)); //347
+        /*
+         -----------------------------------------------------------------------------
+        393 известны строки 1 2 3. заменить в строке 1 последнее вхождение строки 2 на строку 3
+         */
+        String s = "war_war_zone1230124214_war_zone", s1 = "war", s2 = "STOP";
+        z_393(s, s1, s2); //393
+        /*
+         -----------------------------------------------------------------------------
+        399 дана страка русских слов состоящая из заглавных и разделенная
+            1-несколькими пробелами. найти кол-во слов с буквой "А"
+         */
+        String word = "АРБУЗ   ОПЕРА   ДЖАВА   СИ БУТЫЛКА     ЗАДАЧА                  ТЕЛЕФОН";
+        z_399(word);
+        /*
+         -----------------------------------------------------------------------------
+        427 дан непустой текстовый файл. удалить последнюю строку
+         */
+        z_427();
     }
 }
