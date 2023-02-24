@@ -1,3 +1,5 @@
+package Students;
+
 class User extends AbstractUser {
     User(String fio, Integer age){
         this.fio = fio;

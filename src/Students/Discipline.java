@@ -1,3 +1,5 @@
+package Students;
+
 public class Discipline extends AbstractDiscipline{
     Discipline(String discipline) {
         this.discipline = discipline;
