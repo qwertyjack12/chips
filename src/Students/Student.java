@@ -1,14 +1,14 @@
 package Students;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Student extends AbstractStudent implements StudentInterface {
     public Student(User user, Grade grade, Discipline discipline) {
         this.user = user;
         this.grade = grade;
         this.discipline = discipline;
-        this.array_discipline = new List<Discipline>;
-        this.array_grade = new List<Grade>;
+        this.array_discipline = new ArrayList<Discipline>();
+        this.array_grade = new ArrayList<Grade>();
         add_discipline(discipline);
         add_grade(grade);
     }
@@ -52,11 +52,11 @@ public class Student extends AbstractStudent implements StudentInterface {
 }
 
 abstract class AbstractStudent {
-    User user;
-    Grade grade;
-    Discipline discipline;
-    List<Discipline> array_discipline;
-    List<Grade> array_grade;
+    public User user;
+    public Grade grade;
+    public Discipline discipline;
+    public ArrayList<Discipline> array_discipline;
+    public ArrayList<Grade> array_grade;
 
     public void setUser(User user) {
         this.user = user;

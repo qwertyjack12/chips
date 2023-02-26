@@ -12,7 +12,7 @@ public class Grade extends AbstractGrade {
 }
 
 abstract class AbstractGrade {
-    Integer grade;
+    public Integer grade;
 
     public void setGrade(Integer grade) {
         this.grade = grade;

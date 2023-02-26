@@ -13,7 +13,7 @@ public class Discipline extends AbstractDiscipline{
 
 
 abstract class AbstractDiscipline {
-    String discipline;
+    public String discipline;
 
     public void setDiscipline(String discipline) {
         this.discipline = discipline;

@@ -38,12 +38,12 @@ abstract class AbstractUser {
     /**
      * Поле фио
      */
-    String fio;
+    public String fio;
 
     /**
      * Поле количество лет
      */
-    Integer age;
+    public Integer age;
 
     /**
      * Метод определения fio {@link User#fio}
