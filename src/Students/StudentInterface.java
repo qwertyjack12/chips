@@ -1,8 +1,9 @@
 package Students;
 
-interface StudentInterface {
-    double get_rating();
-    void add_discipline(Discipline discipline);
-    void add_grade(Grade grade);
-    void remove_discipline(int index);
+import java.util.Collection;
+
+public interface StudentInterface {
+    public void append_discipline(Discipline discipline);
+    public void remove_discipline(Discipline discipline);
+    public void remove_discipline(int index);
 }

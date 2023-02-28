@@ -1,90 +1,50 @@
 package Students;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Student extends AbstractStudent implements StudentInterface {
-    public Student(User user, Grade grade, Discipline discipline) {
-        this.user = user;
-        this.grade = grade;
-        this.discipline = discipline;
-        this.array_discipline = new ArrayList<Discipline>();
-        this.array_grade = new ArrayList<Grade>();
-        add_discipline(discipline);
-        add_grade(grade);
+public class Student extends User implements StudentInterface {
+
+    public Student(String login, String password) {
+        this.login = login;
+        this.password = password;
+        this.list = new ArrayList<>();
     }
 
-    public double get_rating() {
-        double total = 0.;
-        for (Grade value : array_grade) {
-            total += value.getGrade();
-        }
-        return total / array_grade.size();
+    @Override
+    public void append_discipline(Discipline discipline) {
+        list.add(discipline);
     }
 
-
-    public void add_discipline(Discipline discipline) {
-        array_discipline.add(discipline);
+    @Override
+    public void remove_discipline(Discipline discipline) {
+        list.remove(discipline);
     }
 
-    public void add_grade(Grade grade) {
-        array_grade.add(grade);
-    }
-
+    @Override
     public void remove_discipline(int index) {
-        array_discipline.remove(index);
-        array_grade.remove(index);
-    }
-
-    @Override
-    public String toString() {
-        return "Студент " + user.getFio() + " мега хорош";
-    }
-
-    @Override
-    public int hashCode() {
-        return user.hashCode() + grade.hashCode() + discipline.hashCode();
+        list.remove(index);
     }
 
     @Override
     public boolean equals(Student student) {
-        return student.hashCode() == this.hashCode();
-    }
-}
-
-abstract class AbstractStudent {
-    public User user;
-    public Grade grade;
-    public Discipline discipline;
-    public ArrayList<Discipline> array_discipline;
-    public ArrayList<Grade> array_grade;
-
-    public void setUser(User user) {
-        this.user = user;
+        return this.hashCode() == student.hashCode();
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((login == null) ? 0 : login.hashCode()) + ((password == null) ? 0 : password.hashCode());
+        return result;
     }
 
-    public void setDiscipline(Discipline discipline) {
-        this.discipline = discipline;
+    @Override
+    public String toString() {
+        List<String> output = new ArrayList<>();
+        for (Discipline discipline : list) {
+            output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
+        }
+        return output.toString();
     }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public Grade getGrade() {
-        return this.grade;
-    }
-
-    public Discipline getDiscipline() {
-        return this.discipline;
-    }
-
-    public abstract boolean equals(Student student);
-
-    public abstract int hashCode();
-
-    public abstract String toString();
 }

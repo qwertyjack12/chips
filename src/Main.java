@@ -1,30 +1,20 @@
-import Students.Discipline;
-import Students.Grade;
-import Students.User;
-import Students.Student;
-
+import Students.*;
 
 public class Main {
-    public static void main(String[] args){
-        Discipline discipline = new Discipline("Russian");
-        Grade grade = new Grade(5);
-        User user = new User("Ivan", 27);
-        Student student = new Student(user, grade, discipline);
-        //
-        //
-        //
-        Discipline discipline1 = new Discipline("English");
-        Grade grade1 = new Grade(4);
-        User user1 = new User("Pavel", 27);
-        Student student1 = new Student(user1, grade1, discipline1);
-        //
-        //
-        //
-        System.out.println(student.toString());
-        System.out.println(student.hashCode());
-        System.out.println(student1.toString());
-        System.out.println(student1.hashCode());
-        System.out.println(student.equals(student1));
+    public static void main(String[] args) {
+        ExamGrade examGrade = new ExamGrade(5);
+        Discipline<ExamGrade> discipline = new Discipline<>("math", examGrade);
+
+        OffsetGrade offsetGrade = new OffsetGrade(4);
+        Discipline<OffsetGrade> discipline1 = new Discipline<>("informatic", offsetGrade);
+
+        Student st = new Student("login", "password");
+        st.append_discipline(discipline);
+        st.append_discipline(discipline1);
+        System.out.println(st.toString());
+
+        System.out.println(st.getLogin());
+        System.out.println(st.getPassword());
     }
 }
 

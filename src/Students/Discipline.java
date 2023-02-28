@@ -1,26 +1,34 @@
 package Students;
 
-public class Discipline extends AbstractDiscipline{
-    public Discipline(String discipline) {
-        this.discipline = discipline;
+public class Discipline <T extends Grade> {
+
+    protected String name;
+    protected T grade;
+
+    public Discipline(String name, T grade) {
+        this.name = name;
+        this.grade = grade;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public T getGrade() {
+        return grade;
+    }
+
+    public void setGrade(T grade) {
+        this.grade = grade;
     }
 
     @Override
     public String toString(){
-        return "Дисциплина: " + discipline;
-    }
-}
-
-
-abstract class AbstractDiscipline {
-    public String discipline;
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-    public String getDiscipline(){
-        return this.discipline;
+        return "Discipline: " + this.grade.toString();
     }
 
-    public abstract String toString();
 }
