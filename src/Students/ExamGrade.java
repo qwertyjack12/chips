@@ -1,12 +1,29 @@
 package Students;
 
-public class ExamGrade extends Grade{
-    public ExamGrade(Integer value){
+/**
+ * Класс оценки за экзамен со свойством value
+ *
+ * @author Zelenin
+ * @version 1.0
+ */
+
+public class ExamGrade extends Grade {
+
+    /**
+     * Конструктор - создание нового объекта с определенным значением
+     *
+     * @param value - значение оценка
+     * @see ExamGrade#ExamGrade(Integer)
+     */
+    public ExamGrade(Integer value) {
         this.value = value;
     }
 
+    /**
+     * Переопределение функции toString базового класса Object
+     */
     @Override
-    public String toString(){
+    public String toString() {
         return switch (value) {
             case 1, 2 -> "bad";
             case 3 -> "it's okay";

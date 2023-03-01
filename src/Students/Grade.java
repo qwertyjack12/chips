@@ -1,15 +1,33 @@
 package Students;
 
+/**
+ * Абстрактный класс оценки со свойством value
+ *
+ * @author Zelenin
+ * @version 1.0
+ */
+
 public abstract class Grade {
+    /**
+     * Поле значение
+     */
     protected Integer value;
 
+    /**
+     * Функция получения значения поля {@link Grade#value}
+     *
+     * @return позвращает значение оценки
+     */
     public Integer getValue() {
         return value;
     }
 
+    /**
+     * Процедура определения значения оценки {@link Grade#value}
+     *
+     * @param value - значение оценки
+     */
     public void setValue(Integer value) {
         this.value = value;
     }
-
-
 }
