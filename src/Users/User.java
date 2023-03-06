@@ -1,4 +1,7 @@
-package Students;
+package Users;
+
+import Students.Discipline;
+import Students.Grade;
 
 import java.util.List;
 
@@ -19,6 +22,10 @@ public abstract class User {
      * Поле пароля
      */
     protected String password;
+    /**
+     * Поле имени
+     */
+    protected String name;
     /**
      * Поле списка дисциплин
      */

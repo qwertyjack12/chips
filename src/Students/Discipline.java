@@ -30,6 +30,16 @@ public class Discipline<T extends Grade> {
     }
 
     /**
+     * Конструктор - создание нового объекта с определенным значениямия
+     *
+     * @param name - название дисциплины
+     * @see Discipline#Discipline(String)
+     */
+    public Discipline(String name) {
+        this.name = name;
+    }
+
+    /**
      * Функция получения значения поля {@link Discipline#name}
      *
      * @return возвращает название производителя

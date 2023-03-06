@@ -1,4 +1,7 @@
-package Students;
+package Users;
+
+import Students.Discipline;
+import Students.Grade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +18,13 @@ public class Student extends User implements StudentInterface {
     /**
      * Конструктор - создание нового объекта с определенными значениями
      *
+     * @param name     - name
      * @param login    - login
      * @param password - password
-     * @see Student#Student(String, String)
+     * @see Student#Student(String, String, String)
      */
-    public Student(String login, String password) {
+    public Student(String name, String login, String password) {
+        this.name = name;
         this.login = login;
         this.password = password;
         this.list = new ArrayList<>();
@@ -49,6 +54,24 @@ public class Student extends User implements StudentInterface {
         list.remove(index);
     }
 
+    @Override
+    public double get_rating() {
+        double total = 0;
+        for (Discipline<Grade> discipline : list) {
+            total += discipline.getGrade().getValue();
+        }
+        return total / list.size();
+    }
+
+    @Override
+    public String get_student_grades() {
+        List<String> output = new ArrayList<>();
+        for (Discipline discipline : list) {
+            output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
+        }
+        return output.toString();
+    }
+
     /**
      * Переопределение функции equals базового класса Object
      */
@@ -73,10 +96,6 @@ public class Student extends User implements StudentInterface {
      */
     @Override
     public String toString() {
-        List<String> output = new ArrayList<>();
-        for (Discipline discipline : list) {
-            output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
-        }
-        return output.toString();
+        return this.name + ": " + this.login;
     }
 }

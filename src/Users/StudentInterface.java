@@ -1,4 +1,6 @@
-package Students;
+package Users;
+
+import Students.Discipline;
 
 /**
  * Интерфейс для работы с классом Student
@@ -11,15 +13,19 @@ public interface StudentInterface {
     /**
      * Функция добавляющая студенту дисциплину
      */
-    public void append_discipline(Discipline discipline);
+    void append_discipline(Discipline discipline);
 
     /**
      * Функция удаления дисциплины у студента
      */
-    public void remove_discipline(Discipline discipline);
+    void remove_discipline(Discipline discipline);
 
     /**
      * Функция удаления дисциплины у студента
      */
-    public void remove_discipline(int index);
+    void remove_discipline(int index);
+
+    double get_rating();
+
+    String get_student_grades();
 }
