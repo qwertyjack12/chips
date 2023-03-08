@@ -129,4 +129,3 @@ public class Main {
         System.out.println(teacher.get_students_for_discipline(d_t1));
     }
 }
-

@@ -68,12 +68,6 @@ public abstract class User {
     }
 
     /**
-     * Абстрактная функция equals
-     */
-
-    public abstract boolean equals(Student student);
-
-    /**
      * Абстрактная функция hashCode
      */
     public abstract int hashCode();

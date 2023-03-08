@@ -75,7 +75,6 @@ public class Student extends User implements StudentInterface {
     /**
      * Переопределение функции equals базового класса Object
      */
-    @Override
     public boolean equals(Student student) {
         return this.hashCode() == student.hashCode();
     }
