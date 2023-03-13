@@ -75,26 +75,8 @@ public class Student extends User implements StudentInterface {
     /**
      * Переопределение функции equals базового класса Object
      */
+
     public boolean equals(Student student) {
         return this.hashCode() == student.hashCode();
-    }
-
-    /**
-     * Переопределение функции hashCode базового класса Object
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((login == null) ? 0 : login.hashCode()) + ((password == null) ? 0 : password.hashCode());
-        return result;
-    }
-
-    /**
-     * Переопределение функции toString базового класса Object
-     */
-    @Override
-    public String toString() {
-        return this.name + ": " + this.login;
     }
 }

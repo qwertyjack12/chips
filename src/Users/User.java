@@ -70,10 +70,16 @@ public abstract class User {
     /**
      * Абстрактная функция hashCode
      */
-    public abstract int hashCode();
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((login == null) ? 0 : login.hashCode()) + ((password == null) ? 0 : password.hashCode());
+        return result;
+    }
 
-    /**
-     * Абстрактная функция toString
-     */
-    public abstract String toString();
+    @Override
+    public String toString() {
+        return this.name + ": " + this.login;
+    }
 }

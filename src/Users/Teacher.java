@@ -56,17 +56,4 @@ public class Teacher extends User implements TeacherInterface {
     public boolean equals(Teacher teacher) {
         return this.hashCode() == teacher.hashCode();
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 32;
-        int result = 1;
-        result = prime * result + ((login == null) ? 0 : login.hashCode()) + ((password == null) ? 0 : password.hashCode());
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return this.name + ": " + this.login;
-    }
 }
