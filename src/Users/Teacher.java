@@ -3,9 +3,11 @@ package Users;
 import Groups.Group;
 import Students.Discipline;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Teacher extends User implements TeacherInterface {
     protected Map<Discipline, ArrayList<Group>> studentDictionary;
@@ -51,9 +53,5 @@ public class Teacher extends User implements TeacherInterface {
         }
 
         return output;
-    }
-
-    public boolean equals(Teacher teacher) {
-        return this.hashCode() == teacher.hashCode();
     }
 }

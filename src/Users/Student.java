@@ -3,6 +3,7 @@ package Users;
 import Students.Discipline;
 import Students.Grade;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public class Student extends User implements StudentInterface {
+public class Student extends User implements StudentInterface, Serializable {
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
@@ -70,13 +71,5 @@ public class Student extends User implements StudentInterface {
             output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
         }
         return output.toString();
-    }
-
-    /**
-     * Переопределение функции equals базового класса Object
-     */
-
-    public boolean equals(Student student) {
-        return this.hashCode() == student.hashCode();
     }
 }

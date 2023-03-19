@@ -1,5 +1,7 @@
 package Students;
 
+import java.io.Serializable;
+
 /**
  * Класс дисциплины со свойствам name и grade
  *

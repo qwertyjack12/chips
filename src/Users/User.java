@@ -4,6 +4,7 @@ import Students.Discipline;
 import Students.Grade;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Абстрактный класс пользователя со свойствами login и password
@@ -67,6 +68,14 @@ public abstract class User {
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * Абстрактная функция hashCode
      */
@@ -78,8 +87,15 @@ public abstract class User {
         return result;
     }
 
+    public boolean equals(Objects objects) {
+        if (objects == null) {
+            return false;
+        }
+        return objects.hashCode() == this.hashCode();
+    }
+
     @Override
     public String toString() {
-        return this.name + ": " + this.login;
+        return this.getName() + ": " + this.getLogin();
     }
 }
