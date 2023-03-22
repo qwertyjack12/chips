@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Teacher extends User implements TeacherInterface {
+public class Teacher extends User implements TeacherInterface, Serializable {
     protected Map<Discipline, ArrayList<Group>> studentDictionary;
 
     public Teacher(String name, String login, String password) {

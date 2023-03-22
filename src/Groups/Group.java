@@ -2,10 +2,11 @@ package Groups;
 
 import Users.Student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Group implements GroupInterface {
+public class Group implements GroupInterface, Serializable {
     protected String name;
     protected List<Student> studentList;
 

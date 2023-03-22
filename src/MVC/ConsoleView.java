@@ -1,7 +1,24 @@
 package MVC;
 
-public class ConsoleView implements View{
+import java.util.Scanner;
 
+public class ConsoleView implements View{
+    private Controller controller;
+
+    public ConsoleView(Controller controller){
+        this.controller = controller;
+    }
+
+    @Override
+    public int Listen() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+    @Override
+    public void Init() {
+        ShowMenu();
+    }
 
     @Override
     public void ShowMenu() {
@@ -13,6 +30,19 @@ public class ConsoleView implements View{
         System.out.println("-> 4: Discipline");
         System.out.println("-> 5: All");
         System.out.println("-> 0: Close app");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                return;
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            case 3 -> ShowGroups();
+            case 4 -> ShowDisciplines();
+            case 5 -> ShowAll();
+            default -> ShowMenu();
+        }
 
     }
 
@@ -22,6 +52,16 @@ public class ConsoleView implements View{
         System.out.println("-> 1: Show All");
         System.out.println("-> 2: Remove All");
         System.out.println("-> 0: Back");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                ShowMenu();
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            default -> ShowMenu();
+        }
     }
 
     @Override
@@ -33,6 +73,19 @@ public class ConsoleView implements View{
         System.out.println("-> 4: Ger Student grades");
         System.out.println("-> 5: Show Students");
         System.out.println("-> 0: Back");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                ShowMenu();
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            case 3 -> ShowGroups();
+            case 4 -> ShowDisciplines();
+            case 5 -> ShowAll();
+            default -> ShowMenu();
+        }
     }
 
     @Override
@@ -44,6 +97,19 @@ public class ConsoleView implements View{
         System.out.println("-> 4: Get Students for discipline");
         System.out.println("-> 5: Show Teachers");
         System.out.println("-> 0: Back");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                ShowMenu();
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            case 3 -> ShowGroups();
+            case 4 -> ShowDisciplines();
+            case 5 -> ShowAll();
+            default -> ShowMenu();
+        }
     }
 
     @Override
@@ -54,6 +120,18 @@ public class ConsoleView implements View{
         System.out.println("-> 3: Get rating");
         System.out.println("-> 4: Show Groups");
         System.out.println("-> 0: Back");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                ShowMenu();
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            case 3 -> ShowGroups();
+            case 4 -> ShowDisciplines();
+            default -> ShowMenu();
+        }
     }
 
     @Override
@@ -62,5 +140,15 @@ public class ConsoleView implements View{
         System.out.println("-> 1: Add Discipline");
         System.out.println("-> 2: Show Disciplines");
         System.out.println("-> 0: Back");
+        System.out.print("Your choice: ");
+
+        switch (Listen()) {
+            case 0 -> {
+                ShowMenu();
+            }
+            case 1 -> ShowStudents();
+            case 2 -> ShowTeachers();
+            default -> ShowMenu();
+        }
     }
 }

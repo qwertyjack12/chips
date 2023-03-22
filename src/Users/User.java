@@ -3,6 +3,7 @@ package Users;
 import Students.Discipline;
 import Students.Grade;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @version 1.0
  */
 
-public abstract class User {
+public abstract class User implements Serializable {
     /**
      * Поле логина
      */

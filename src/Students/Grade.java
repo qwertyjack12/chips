@@ -1,5 +1,7 @@
 package Students;
 
+import java.io.Serializable;
+
 /**
  * Абстрактный класс оценки со свойством value
  *
@@ -7,7 +9,7 @@ package Students;
  * @version 1.0
  */
 
-public abstract class Grade {
+public abstract class Grade implements Serializable {
     /**
      * Поле значение
      */

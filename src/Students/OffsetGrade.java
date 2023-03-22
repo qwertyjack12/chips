@@ -1,5 +1,7 @@
 package Students;
 
+import java.io.Serializable;
+
 /**
  * Класс оценки за зачет со свойством value
  *
@@ -8,7 +10,7 @@ package Students;
  */
 
 
-public class OffsetGrade extends Grade {
+public class OffsetGrade extends Grade implements Serializable {
     /**
      * Конструктор - создание нового объекта с определенным значением
      *

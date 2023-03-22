@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  */
 
-public class Discipline<T extends Grade> {
+public class Discipline<T extends Grade> implements Serializable{
     /**
      * Поле название дисциплины
      */
