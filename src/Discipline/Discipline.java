@@ -1,4 +1,6 @@
-package Students;
+package Discipline;
+
+import Grade.Grade;
 
 import java.io.Serializable;
 

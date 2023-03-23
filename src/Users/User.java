@@ -1,7 +1,7 @@
 package Users;
 
-import Students.Discipline;
-import Students.Grade;
+import Discipline.Discipline;
+import Grade.Grade;
 
 import java.io.Serializable;
 import java.util.List;

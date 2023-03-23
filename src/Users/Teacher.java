@@ -1,13 +1,12 @@
 package Users;
 
 import Groups.Group;
-import Students.Discipline;
+import Discipline.Discipline;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Teacher extends User implements TeacherInterface, Serializable {
     protected Map<Discipline, ArrayList<Group>> studentDictionary;

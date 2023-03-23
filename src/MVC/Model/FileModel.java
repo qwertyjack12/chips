@@ -1,9 +1,9 @@
 package MVC.Model;
 
 import Groups.Group;
-import Students.Discipline;
-import Students.ExamGrade;
-import Students.OffsetGrade;
+import Discipline.Discipline;
+import Grade.ExamGrade;
+import Grade.OffsetGrade;
 import Users.Student;
 import Users.Teacher;
 
