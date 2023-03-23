@@ -1,8 +1,6 @@
-import Groups.Group;
-import MVC.*;
-import Students.*;
-import Users.Student;
-import Users.Teacher;
+import MVC.Controller.Controller;
+import MVC.Model.FileModel;
+import MVC.View.ConsoleView;
 
 import java.io.*;
 import java.util.Scanner;

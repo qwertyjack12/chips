@@ -1,4 +1,4 @@
-package MVC;
+package MVC.View;
 
 import java.io.IOException;
 

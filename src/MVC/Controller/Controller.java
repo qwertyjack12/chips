@@ -1,4 +1,6 @@
-package MVC;
+package MVC.Controller;
+
+import MVC.Model.FileModel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

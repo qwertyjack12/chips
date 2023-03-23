@@ -1,4 +1,4 @@
-package MVC;
+package MVC.Model;
 
 import Students.ExamGrade;
 import Students.OffsetGrade;

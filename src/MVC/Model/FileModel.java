@@ -1,4 +1,4 @@
-package MVC;
+package MVC.Model;
 
 import Groups.Group;
 import Students.Discipline;
@@ -7,7 +7,6 @@ import Students.OffsetGrade;
 import Users.Student;
 import Users.Teacher;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 

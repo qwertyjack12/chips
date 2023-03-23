@@ -1,7 +1,8 @@
-package MVC;
+package MVC.View;
+
+import MVC.Controller.Controller;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsoleView implements View{
