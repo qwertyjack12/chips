@@ -1,23 +1,29 @@
 package MVC;
 
-public interface ModelInterface {
-    void getAll();
+import Students.ExamGrade;
+import Students.OffsetGrade;
 
-    void setExamGrade(Integer value);
-    void setOffsetGrade(Integer value);
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface ModelInterface {
+    void removeAll() throws FileNotFoundException;
+
+//    ExamGrade setExamGrade(Integer value);
+//    OffsetGrade setOffsetGrade(Integer value);
 
     void setDiscipline(String name, String type_grade, Integer value);
     void setDiscipline(String name);
-    void getDisciplines();
+    void getDisciplines() throws IOException;
 
     void setStudent(String name, String login, String password);
-    void getStudents();
+    void getStudents() throws IOException;
 
     void setGroup(String name);
-    void getGroups();
+    void getGroups() throws IOException;
 
     void setTeacher(String name, String login, String password);
-    void getTeachers();
+    void getTeachers() throws IOException;
 
 
 }
