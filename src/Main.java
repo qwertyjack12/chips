@@ -12,8 +12,9 @@ public class Main {
         Controller controller = new Controller(fileModel, scanner);
         ConsoleView consoleView = new ConsoleView(controller);
 
-        consoleView.Init();
-
+        while (true) {
+            consoleView.Init();
+        }
 //        ExamGrade eg5 = new ExamGrade(5);
 //        OffsetGrade og5 = new OffsetGrade(5);
 //        Discipline d_math_5 = new Discipline<>("math", eg5);

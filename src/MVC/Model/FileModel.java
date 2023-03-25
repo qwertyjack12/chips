@@ -4,202 +4,113 @@ import Groups.Group;
 import Discipline.Discipline;
 import Grade.ExamGrade;
 import Grade.OffsetGrade;
+import MVC.Deserializator;
+import MVC.Serializator;
 import Users.Student;
 import Users.Teacher;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class FileModel implements ModelInterface {
-    @Override
-    public void removeAll() throws FileNotFoundException {
-        System.out.println("Удалена вся информация");
 
-        PrintWriter writer = new PrintWriter("temp.bin");
-        writer.print("");
-        writer.close();
+    private Hashtable<Integer, Discipline> StudentDisciplineTable = null;
+    private Hashtable<Integer, Discipline> TeacherDisciplineTable = null;
+    private Hashtable<Integer, Student> StudentTable = null;
+    private Hashtable<Integer, Group> GroupTable = null;
+    private Hashtable<Integer, Teacher> TeacherTable = null;
+
+
+    public FileModel() {
+        this.StudentDisciplineTable = new Hashtable<>();
+        this.TeacherDisciplineTable = new Hashtable<>();
+        this.StudentTable = new Hashtable<>();
+        this.GroupTable = new Hashtable<>();
+        this.TeacherTable = new Hashtable<>();
     }
 
-//    @Override
-//    public ExamGrade setExamGrade(Integer value) {
-//        return new ExamGrade(value);
-//    }
-//
-//    @Override
-//    public OffsetGrade setOffsetGrade(Integer value) {
-//        return new OffsetGrade(value);
-//    }
-
     @Override
-    public void setDiscipline(String name, String type_grade, Integer value) {
+    public void setStudentDiscipline(String name, String type_grade, Integer value) {
         System.out.println("Создан объект класса Discipline(String name, String type_grade, Integer value)");
 
-        try {
-            FileOutputStream fos = new FileOutputStream("temp.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            if (type_grade.equals("exam")) {
-                oos.writeObject(new Discipline(name, new ExamGrade(value)));
-            } else if (type_grade.equals("offset")) {
-                oos.writeObject(new Discipline(name, new OffsetGrade(value)));
-            } else {
-                System.out.println("WrongInputError!");
-            }
-
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (type_grade.equals("exam")) {
+            StudentDisciplineTable.put(StudentDisciplineTable.size() + 1, new Discipline(name, new ExamGrade(value)));
+        } else if (type_grade.equals("offset")) {
+            StudentDisciplineTable.put(StudentDisciplineTable.size() + 1, new Discipline(name, new OffsetGrade(value)));
+        } else {
+            System.out.println("WrongInputError!");
+            return;
         }
+
+        Serializator.serialization(StudentDisciplineTable, "StudentDiscipline.bin");
+
     }
 
     @Override
-    public void setDiscipline(String name) {
+    public void setTeacherDiscipline(String name) {
         System.out.println("Создан объект класса Discipline");
 
-        try {
-            FileOutputStream fos = new FileOutputStream("temp.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new Discipline(name));
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        TeacherDisciplineTable.put(TeacherDisciplineTable.size() + 1, new Discipline(name));
+
+        Serializator.serialization(TeacherDisciplineTable, "TeacherDiscipline.bin");
     }
 
     @Override
-    public void getDisciplines() throws IOException {
-        System.out.println("Получены все дисциплины");
+    public void getDisciplines() {
 
-        FileInputStream fis = new FileInputStream("temp.bin");
-        ObjectInputStream ois = new ObjectInputStream(fis);
+        Deserializator.deserialization(TeacherDisciplineTable, "TeacherDiscipline.bin");
 
-        ArrayList<Discipline> disciplines = new ArrayList<>();
-
-        while (true) {
-            try {
-                disciplines.add((Discipline) ois.readObject());
-            } catch (EOFException | ClassNotFoundException e) {
-                break;
-            }
-        }
-
-        ois.close();
-
-        System.out.println(disciplines);
     }
 
     @Override
     public void setStudent(String name, String login, String password) {
         System.out.println("Создан объект класса Student");
 
-        try {
-            FileOutputStream fos = new FileOutputStream("temp.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new Student(name, login, password));
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        StudentTable.put(StudentTable.size() + 1, new Student(name, login, password));
+
+        Serializator.serialization(StudentTable, "Student.bin");
 
     }
 
     @Override
-    public void getStudents() throws IOException {
-        FileInputStream fis = new FileInputStream("temp.bin");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        ;
+    public void getStudents() {
 
-        ArrayList<Student> students = new ArrayList<>();
+        Deserializator.deserialization(StudentTable, "Student.bin");
 
-        while (true) {
-            try {
-                students.add((Student) ois.readObject());
-            } catch (EOFException | ClassNotFoundException e) {
-                break;
-            }
-        }
-
-        ois.close();
-
-        System.out.println(students);
-//        try {
-//            Student new_st = (Student) ois.readObject();
-//            System.out.println("Student: " + new_st);
-//            ois.close();
-//
-//        } catch (IOException | ClassNotFoundException e){
-//            e.printStackTrace();
-//            return;
-//        }
     }
 
     @Override
     public void setGroup(String name) {
         System.out.println("Создан объект класса Group");
 
-        try {
-            FileOutputStream fos = new FileOutputStream("temp.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new Group(name));
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        GroupTable.put(GroupTable.size() + 1, new Group(name));
+
+        Serializator.serialization(GroupTable, "Group.bin");
+
     }
 
     @Override
-    public void getGroups() throws IOException {
-        FileInputStream fis = new FileInputStream("temp.bin");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        ;
+    public void getGroups() {
 
-        ArrayList<Group> groups = new ArrayList<>();
+        Deserializator.deserialization(GroupTable, "Group.bin");
 
-        while (true) {
-            try {
-                groups.add((Group) ois.readObject());
-            } catch (EOFException | ClassNotFoundException e) {
-                break;
-            }
-        }
-
-        ois.close();
-
-        System.out.println(groups);
     }
 
     @Override
     public void setTeacher(String name, String login, String password) {
         System.out.println("Создан объект класса Teacher");
 
-        try {
-            FileOutputStream fos = new FileOutputStream("temp.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new Teacher(name, login, password));
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        TeacherTable.put(TeacherTable.size() + 1, new Teacher(name, login, password));
+
+        Serializator.serialization(TeacherTable, "Teacher.bin");
     }
 
     @Override
-    public void getTeachers() throws IOException {
-        FileInputStream fis = new FileInputStream("temp.bin");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        ;
+    public void getTeachers() {
 
-        ArrayList<Teacher> teachers = new ArrayList<>();
+        Deserializator.deserialization(TeacherTable, "Teacher.bin");
 
-        while (true) {
-            try {
-                teachers.add((Teacher) ois.readObject());
-            } catch (EOFException | ClassNotFoundException e) {
-                break;
-            }
-        }
-
-        ois.close();
-
-        System.out.println(teachers);
     }
 }

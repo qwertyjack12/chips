@@ -10,6 +10,10 @@ public class Group implements GroupInterface, Serializable {
     protected String name;
     protected List<Student> studentList;
 
+    public Group(){
+        this.name = "Excuse me Group?";
+    }
+
     public Group(String name) {
         this.name = name;
         this.studentList = new ArrayList<>();

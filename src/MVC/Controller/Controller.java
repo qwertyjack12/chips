@@ -2,8 +2,6 @@ package MVC.Controller;
 
 import MVC.Model.FileModel;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Controller {
@@ -23,15 +21,11 @@ public class Controller {
         return scanner.next();
     }
 
-    public void removeAll() throws FileNotFoundException {
-        fileModel.removeAll();
-    }
-
     public void setTeacherDiscipline() {
         System.out.print("Name: ");
         String name = ListenStr();
 
-        fileModel.setDiscipline(name);
+        fileModel.setTeacherDiscipline(name);
     }
 
     public void setStudentDiscipline() {
@@ -42,10 +36,10 @@ public class Controller {
         System.out.print("Value grade: ");
         Integer value = ListenInt();
 
-        fileModel.setDiscipline(name, typeGrade, value);
+        fileModel.setStudentDiscipline(name, typeGrade, value);
     }
 
-    public void getDisciplines() throws IOException {
+    public void getDisciplines() {
         fileModel.getDisciplines();
     }
 
@@ -60,7 +54,7 @@ public class Controller {
         fileModel.setStudent(name, login, password);
     }
 
-    public void getStudents() throws IOException {
+    public void getStudents() {
         fileModel.getStudents();
     }
 
@@ -71,7 +65,7 @@ public class Controller {
         fileModel.setGroup(name);
     }
 
-    public void getGroups() throws IOException {
+    public void getGroups() {
         fileModel.getGroups();
     }
 
@@ -86,7 +80,7 @@ public class Controller {
         fileModel.setTeacher(name, login, password);
     }
 
-    public void getTeachers() throws IOException {
+    public void getTeachers() {
         fileModel.getTeachers();
     }
 

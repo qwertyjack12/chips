@@ -11,6 +11,10 @@ import java.util.Map;
 public class Teacher extends User implements TeacherInterface, Serializable {
     protected Map<Discipline, ArrayList<Group>> studentDictionary;
 
+    public Teacher(){
+        this.name = "Excuse me Teacher?";
+    }
+
     public Teacher(String name, String login, String password) {
         this.name = name;
         this.login = login;

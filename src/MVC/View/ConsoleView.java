@@ -5,10 +5,10 @@ import MVC.Controller.Controller;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ConsoleView implements View{
+public class ConsoleView implements View {
     private Controller controller;
 
-    public ConsoleView(Controller controller){
+    public ConsoleView(Controller controller) {
         this.controller = controller;
     }
 
@@ -19,12 +19,12 @@ public class ConsoleView implements View{
     }
 
     @Override
-    public void Init() throws IOException {
+    public void Init() {
         ShowMenu();
     }
 
     @Override
-    public void ShowMenu() throws IOException {
+    public void ShowMenu() {
 
         System.out.println("Menu:");
         System.out.println("-> 1: Student");
@@ -43,30 +43,13 @@ public class ConsoleView implements View{
             case 2 -> ShowTeachers();
             case 3 -> ShowGroups();
             case 4 -> ShowDisciplines();
-            case 5 -> ShowAll();
             default -> ShowMenu();
         }
 
     }
 
     @Override
-    public void ShowAll() throws IOException {
-        System.out.println("All Menu:");
-        System.out.println("-> 1: Remove All");
-        System.out.println("-> 0: Back");
-        System.out.print("Your choice: ");
-
-        switch (Listen()) {
-            case 0 -> {
-                ShowMenu();
-            }
-            case 1 -> controller.removeAll();
-            default -> ShowMenu();
-        }
-    }
-
-    @Override
-    public void ShowStudents() throws IOException {
+    public void ShowStudents() {
         System.out.println("Students Menu:");
         System.out.println("-> 1: Add Student");
         System.out.println("-> 2: Add discipline for Student");
@@ -90,7 +73,7 @@ public class ConsoleView implements View{
     }
 
     @Override
-    public void ShowTeachers() throws IOException {
+    public void ShowTeachers() {
         System.out.println("Teachers Menu:");
         System.out.println("-> 1: Add Teacher");
         System.out.println("-> 2: Add discipline for Teacher");
@@ -114,7 +97,7 @@ public class ConsoleView implements View{
     }
 
     @Override
-    public void ShowGroups() throws IOException {
+    public void ShowGroups() {
         System.out.println("Groups Menu:");
         System.out.println("-> 1: Add Group");
         System.out.println("-> 2: Add students for Group");
@@ -136,7 +119,7 @@ public class ConsoleView implements View{
     }
 
     @Override
-    public void ShowDisciplines() throws IOException {
+    public void ShowDisciplines() {
         System.out.println("Disciplines Menu:");
         System.out.println("-> 1: Add Discipline");
         System.out.println("-> 2: Show Disciplines");

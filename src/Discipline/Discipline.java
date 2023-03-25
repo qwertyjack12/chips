@@ -21,6 +21,12 @@ public class Discipline<T extends Grade> implements Serializable{
      */
     protected T grade;
 
+
+    public Discipline(){
+        this.name = "Excuse me Discipline?";
+    }
+
+
     /**
      * Конструктор - создание нового объекта с определенным значениямия
      *

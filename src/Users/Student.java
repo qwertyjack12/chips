@@ -16,6 +16,10 @@ import java.util.List;
 
 public class Student extends User implements StudentInterface, Serializable {
 
+    public Student(){
+        this.name = "Excuse me Student?";
+    }
+
     /**
      * Конструктор - создание нового объекта с определенными значениями
      *
