@@ -1,21 +1,33 @@
 package MVC.Model;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import Users.Student;
+
+import java.util.Scanner;
 
 public interface ModelInterface {
-    void setStudentDiscipline(String name, String type_grade, Integer value);
-    void setTeacherDiscipline(String name);
-    void getDisciplines() throws IOException;
+//    void setStudentDiscipline(String name, String type_grade, Integer value);
+    void setDiscipline(String name);
+    void getDisciplines();
 
     void setStudent(String name, String login, String password);
-    void getStudents() throws IOException;
+    void addDiscipline(Integer DisciplineKey, String type_grade, Integer value, Integer key);
+    void getStudentsRating();
+    void getStudentGrades(Integer key);
+    void getStudents();
+    void removeStudent();
+
 
     void setGroup(String name);
-    void getGroups() throws IOException;
+    void removeGroup();
+    void removeStudentInGroup(Integer keyGroup, Scanner scanner);
+    void addStudent(Integer keyStudent, Integer keyGroup);
+    void getGroupsRating();
+    void getGroups();
 
     void setTeacher(String name, String login, String password);
-    void getTeachers() throws IOException;
-
-
+    void removeTeacher();
+    void addTeacherDiscipline(Integer keyDiscipline, Integer keyTeacher);
+    void addTeacherGroup(Integer keyTeacher, Integer keyDiscipline, Integer keyGroup);
+    void getTeachersDisciplines();
+    void getTeachers();
 }

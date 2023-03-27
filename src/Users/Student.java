@@ -65,7 +65,11 @@ public class Student extends User implements StudentInterface, Serializable {
         for (Discipline<Grade> discipline : list) {
             total += discipline.getGrade().getValue();
         }
-        return total / list.size();
+        if (list.size() != 0) {
+            return total / list.size();
+        }else {
+            return total;
+        }
     }
 
     @Override
@@ -74,6 +78,12 @@ public class Student extends User implements StudentInterface, Serializable {
         for (Discipline discipline : list) {
             output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
         }
-        return output.toString();
+
+        if (output.size() != 0){
+            return output.toString();
+        }
+        else {
+            return "haven't grades";
+        }
     }
 }

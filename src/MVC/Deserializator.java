@@ -9,21 +9,29 @@ import java.util.Hashtable;
 
 public class Deserializator {
 
-    public static void deserialization(Hashtable hashtable, String filename) {
+    static Hashtable<Integer, Object> newHashTable;
+
+    public static void deserialization(String filename) {
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            Hashtable new_hashtable = (Hashtable) ois.readObject();
+            newHashTable = (Hashtable) ois.readObject();
 
             ois.close();
             fis.close();
 
-            System.out.println(new_hashtable);
+//            System.out.println(newHashTable);
         }
         catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
+            System.out.println("ФАЙЛ ПУСТ");
+//            e.printStackTrace();
         }
+    }
+
+    public static Hashtable getHashtable(String filename){
+        deserialization(filename);
+        return newHashTable;
     }
 
 }
