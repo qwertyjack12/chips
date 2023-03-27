@@ -79,7 +79,6 @@ public class FileModel implements ModelInterface {
     public void getDisciplines() {
 
         System.out.println(Deserializator.getHashtable(DisciplineFile));
-        ;
 
     }
 

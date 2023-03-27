@@ -11,8 +11,6 @@ public class Main {
         Controller controller = new Controller(fileModel, scanner);
         ConsoleView consoleView = new ConsoleView(controller);
 
-        System.out.println(Integer.class);
-
         consoleView.Init();
     }
 }
