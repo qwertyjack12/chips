@@ -9,7 +9,7 @@ import java.util.Hashtable;
 
 public class Deserializator {
 
-    static Hashtable<Integer, Object> newHashTable;
+    private static Hashtable<Integer, Object> newHashTable;
 
     public static void deserialization(String filename) {
         try {

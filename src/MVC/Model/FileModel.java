@@ -22,10 +22,10 @@ public class FileModel implements ModelInterface {
     private Hashtable<Integer, Group> GroupTable = null;
     private Hashtable<Integer, Teacher> TeacherTable = null;
 
-    private final String DisciplineFile = "Discipline.bin";
-    private final String StudentFile = "Student.bin";
-    private final String GroupFile = "Group.bin";
-    private final String TeacherFile = "Teacher.bin";
+    private final String DisciplineFile = "src\\Files\\Discipline.bin";
+    private final String StudentFile = "src\\Files\\Student.bin";
+    private final String GroupFile = "src\\Files\\Group.bin";
+    private final String TeacherFile = "src\\Files\\Teacher.bin";
 
 
     public FileModel() {
@@ -78,7 +78,7 @@ public class FileModel implements ModelInterface {
     @Override
     public void getDisciplines() {
 
-        System.out.println(Deserializator.getHashtable(DisciplineFile));
+        System.out.println(DisciplineTable);
 
     }
 
@@ -134,18 +134,18 @@ public class FileModel implements ModelInterface {
     }
 
     @Override
-    public void getStudents() {
-
-        System.out.println(Deserializator.getHashtable(StudentFile));
-
-    }
-
-    @Override
     public void removeStudent() {
         if (StudentTable.size() != 0) {
             StudentTable.remove(StudentTable.size());
             Serializator.serialization(StudentTable, StudentFile);
         }
+    }
+
+    @Override
+    public void getStudents() {
+
+        System.out.println(StudentTable);
+
     }
 
     /*----------------------------GROUP----------------------------------*/
@@ -209,7 +209,7 @@ public class FileModel implements ModelInterface {
     @Override
     public void getGroups() {
 
-        System.out.println(Deserializator.getHashtable(GroupFile));
+        System.out.println(GroupTable);
 
     }
 
@@ -280,7 +280,7 @@ public class FileModel implements ModelInterface {
     @Override
     public void getTeachers() {
 
-        System.out.println(Deserializator.getHashtable(TeacherFile));
+        System.out.println(TeacherTable);
 
     }
 }
