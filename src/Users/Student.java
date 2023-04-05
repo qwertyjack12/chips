@@ -1,7 +1,6 @@
 package Users;
 
 import Discipline.Discipline;
-import Grade.Grade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class Student extends User implements StudentInterface, Serializable {
      * Переопределение функции append_discipline интерфейса StudentInterface
      */
     @Override
-    public void append_discipline(Discipline discipline) {
+    public void append_discipline(Discipline<?> discipline) {
         list.add(discipline);
     }
 
@@ -47,7 +46,7 @@ public class Student extends User implements StudentInterface, Serializable {
      * Переопределение функции remove_discipline интерфейса StudentInterface
      */
     @Override
-    public void remove_discipline(Discipline discipline) {
+    public void remove_discipline(Discipline<?> discipline) {
         list.remove(discipline);
     }
 
@@ -62,7 +61,7 @@ public class Student extends User implements StudentInterface, Serializable {
     @Override
     public double get_rating() {
         double total = 0;
-        for (Discipline<Grade> discipline : list) {
+        for (Discipline<?> discipline : list) {
             total += discipline.getGrade().getValue();
         }
         if (list.size() != 0) {
@@ -75,7 +74,7 @@ public class Student extends User implements StudentInterface, Serializable {
     @Override
     public String get_student_grades() {
         List<String> output = new ArrayList<>();
-        for (Discipline discipline : list) {
+        for (Discipline<?> discipline : list) {
             output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());
         }
 

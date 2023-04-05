@@ -12,15 +12,14 @@ import Users.Teacher;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.Scanner;
 
 public class FileModel implements ModelInterface {
 
     //    private Hashtable<Integer, Discipline> StudentDisciplineTable = null;
-    private Hashtable<Integer, Discipline> DisciplineTable = null;
-    private Hashtable<Integer, Student> StudentTable = null;
-    private Hashtable<Integer, Group> GroupTable = null;
-    private Hashtable<Integer, Teacher> TeacherTable = null;
+    private Hashtable<Integer, Discipline<?>> DisciplineTable;
+    private Hashtable<Integer, Student> StudentTable;
+    private Hashtable<Integer, Group> GroupTable;
+    private Hashtable<Integer, Teacher> TeacherTable;
 
     private final String DisciplineFile = "src\\Files\\Discipline.bin";
     private final String StudentFile = "src\\Files\\Student.bin";
@@ -166,15 +165,11 @@ public class FileModel implements ModelInterface {
     }
 
     @Override
-    public void removeStudentInGroup(Integer keyGroup, Scanner scanner) {
+    public void removeStudentInGroup(Integer keyGroup, Integer keyStudent) {
         if ((keyGroup <= 0) | (keyGroup > GroupTable.size())) {
             System.out.println("!!WRONG GROUP NUMBER!!");
             return;
         }
-
-        System.out.println(GroupTable.get(keyGroup).getStudentList());
-        System.out.print("Number student: ");
-        int keyStudent = scanner.nextInt();
 
         if ((keyStudent <= 0) | (keyStudent >= GroupTable.get(keyGroup).getStudentList().size())) {
             System.out.println("!!WRONG STUDENT NUMBER!!");

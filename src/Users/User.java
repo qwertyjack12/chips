@@ -1,7 +1,6 @@
 package Users;
 
 import Discipline.Discipline;
-import Grade.Grade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -31,7 +30,7 @@ public abstract class User implements Serializable {
     /**
      * Поле списка дисциплин
      */
-    protected List<Discipline<Grade>> list;
+    protected List<Discipline<?>> list;
 
     /**
      * Процедура определения значения оценки {@link User#login}

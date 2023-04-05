@@ -1,14 +1,12 @@
 package MVC.Controller;
 
-import MVC.Deserializator;
 import MVC.Model.FileModel;
-import MVC.Serializator;
 
 import java.util.Scanner;
 
 public class Controller {
-    private FileModel fileModel;
-    private Scanner scanner;
+    private final FileModel fileModel;
+    private final Scanner scanner;
 
     public Controller(FileModel fileModel, Scanner scanner) {
         this.fileModel = fileModel;
@@ -32,17 +30,6 @@ public class Controller {
         fileModel.setDiscipline(name);
     }
 
-//    public void setStudentDiscipline() {
-//        System.out.print("Name: ");
-//        String name = ListenStr();
-//        System.out.print("Type grade (exam/offset): ");
-//        String typeGrade = ListenStr();
-//        System.out.print("Value grade: ");
-//        Integer value = ListenInt();
-//
-//        fileModel.setStudentDiscipline(name, typeGrade, value);
-//    }
-
     public void getDisciplines() {
         fileModel.getDisciplines();
     }
@@ -60,7 +47,7 @@ public class Controller {
         fileModel.setStudent(name, login, password);
     }
 
-    public void addDiscipline(){
+    public void addDiscipline() {
 
         this.getDisciplines();
         System.out.print("Number discipline: ");
@@ -97,7 +84,7 @@ public class Controller {
         fileModel.getStudents();
     }
 
-    public void removeStudent(){
+    public void removeStudent() {
         fileModel.removeStudent();
     }
 
@@ -114,7 +101,7 @@ public class Controller {
         fileModel.removeGroup();
     }
 
-    public void removeStudentInGroup(){
+    public void removeStudentInGroup() {
         this.getGroups();
         System.out.print("Number group: ");
         Integer keyGroup = ListenInt();
@@ -123,7 +110,7 @@ public class Controller {
         System.out.print("Number student: ");
         Integer keyStudent = ListenInt();
 
-        fileModel.removeStudentInGroup(keyGroup, scanner);
+        fileModel.removeStudentInGroup(keyGroup, keyStudent);
     }
 
     public void addStudent() {
@@ -160,11 +147,11 @@ public class Controller {
         fileModel.setTeacher(name, login, password);
     }
 
-    public void removeTeacher(){
+    public void removeTeacher() {
         fileModel.removeTeacher();
     }
 
-    public void addTeacherDiscipline(){
+    public void addTeacherDiscipline() {
         this.getTeachers();
         System.out.print("Number: ");
         Integer keyTeacher = ListenInt();
@@ -176,7 +163,7 @@ public class Controller {
         fileModel.addTeacherDiscipline(keyDiscipline, keyTeacher);
     }
 
-    public void addTeacherGroup(){
+    public void addTeacherGroup() {
         this.getTeachers();
         System.out.print("Number: ");
         Integer keyTeacher = ListenInt();
@@ -192,7 +179,7 @@ public class Controller {
         fileModel.addTeacherGroup(keyTeacher, keyDiscipline, keyGroup);
     }
 
-    public void getTeachersDisciplines(){
+    public void getTeachersDisciplines() {
         fileModel.getTeachersDisciplines();
     }
 

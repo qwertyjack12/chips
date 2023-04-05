@@ -13,12 +13,12 @@ public interface StudentInterface {
     /**
      * Функция добавляющая студенту дисциплину
      */
-    void append_discipline(Discipline discipline);
+    void append_discipline(Discipline<?> discipline);
 
     /**
      * Функция удаления дисциплины у студента
      */
-    void remove_discipline(Discipline discipline);
+    void remove_discipline(Discipline<?> discipline);
 
     /**
      * Функция удаления дисциплины у студента

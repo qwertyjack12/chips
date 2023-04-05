@@ -1,9 +1,5 @@
 package MVC.Model;
 
-import Users.Student;
-
-import java.util.Scanner;
-
 public interface ModelInterface {
 //    void setStudentDiscipline(String name, String type_grade, Integer value);
     void setDiscipline(String name);
@@ -19,7 +15,7 @@ public interface ModelInterface {
 
     void setGroup(String name);
     void removeGroup();
-    void removeStudentInGroup(Integer keyGroup, Scanner scanner);
+    void removeStudentInGroup(Integer keyGroup, Integer keyStudent);
     void addStudent(Integer keyStudent, Integer keyGroup);
     void getGroupsRating();
     void getGroups();

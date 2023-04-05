@@ -1,10 +1,8 @@
 package MVC;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Deserializator {
@@ -21,11 +19,9 @@ public class Deserializator {
             ois.close();
             fis.close();
 
-//            System.out.println(newHashTable);
         }
         catch (IOException | ClassNotFoundException e){
             System.out.println("ФАЙЛ ПУСТ");
-//            e.printStackTrace();
         }
     }
 

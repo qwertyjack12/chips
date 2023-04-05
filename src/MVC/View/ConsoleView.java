@@ -2,11 +2,10 @@ package MVC.View;
 
 import MVC.Controller.Controller;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleView implements View {
-    private Controller controller;
+    private final Controller controller;
     private boolean flag;
 
     public ConsoleView(Controller controller) {
