@@ -15,7 +15,6 @@ import java.util.Hashtable;
 
 public class FileModel implements ModelInterface {
 
-    //    private Hashtable<Integer, Discipline> StudentDisciplineTable = null;
     private Hashtable<Integer, Discipline<?>> DisciplineTable;
     private Hashtable<Integer, Student> StudentTable;
     private Hashtable<Integer, Group> GroupTable;
@@ -28,7 +27,24 @@ public class FileModel implements ModelInterface {
 
 
     public FileModel() {
+        this.readData();
+    }
 
+    private void checkFIle(String filename) throws IOException {
+        FileReader fileReader = new FileReader(filename);
+        fileReader.close();
+    }
+
+    @Override
+    public void saveChanges() {
+        Serializator.serialization(DisciplineTable, DisciplineFile);
+        Serializator.serialization(StudentTable, StudentFile);
+        Serializator.serialization(GroupTable, GroupFile);
+        Serializator.serialization(TeacherTable, TeacherFile);
+    }
+
+    @Override
+    public void readData() {
         try {
             this.checkFIle(DisciplineFile);
             this.DisciplineTable = Deserializator.getHashtable(DisciplineFile);
@@ -56,12 +72,6 @@ public class FileModel implements ModelInterface {
         } catch (IOException e) {
             this.TeacherTable = new Hashtable<>();
         }
-
-    }
-
-    private void checkFIle(String filename) throws IOException {
-        FileReader fileReader = new FileReader(filename);
-        fileReader.close();
     }
 
     /*----------------------------DISCIPLINE----------------------------------*/
@@ -70,8 +80,6 @@ public class FileModel implements ModelInterface {
         System.out.println("Создан объект класса Discipline");
 
         DisciplineTable.put(DisciplineTable.size() + 1, new Discipline(name));
-
-        Serializator.serialization(DisciplineTable, DisciplineFile);
     }
 
     @Override
@@ -88,9 +96,6 @@ public class FileModel implements ModelInterface {
         System.out.println("Создан объект класса Student");
 
         StudentTable.put(StudentTable.size() + 1, new Student(name, login, password));
-
-        Serializator.serialization(StudentTable, StudentFile);
-
     }
 
     @Override
@@ -110,9 +115,6 @@ public class FileModel implements ModelInterface {
             System.out.println("!!WRONG TYPE GRADE!!");
             return;
         }
-
-        Serializator.serialization(StudentTable, StudentFile);
-
     }
 
     @Override
@@ -136,7 +138,6 @@ public class FileModel implements ModelInterface {
     public void removeStudent() {
         if (StudentTable.size() != 0) {
             StudentTable.remove(StudentTable.size());
-            Serializator.serialization(StudentTable, StudentFile);
         }
     }
 
@@ -152,15 +153,12 @@ public class FileModel implements ModelInterface {
     @Override
     public void setGroup(String name) {
         GroupTable.put(GroupTable.size() + 1, new Group(name));
-        Serializator.serialization(GroupTable, GroupFile);
-
     }
 
     @Override
     public void removeGroup() {
         if (GroupTable.size() != 0) {
             GroupTable.remove(GroupTable.size());
-            Serializator.serialization(GroupTable, GroupFile);
         }
     }
 
@@ -177,7 +175,6 @@ public class FileModel implements ModelInterface {
         }
 
         GroupTable.get(keyGroup).remove_student(keyStudent - 1);
-        Serializator.serialization(GroupTable, GroupFile);
     }
 
     @Override
@@ -191,7 +188,6 @@ public class FileModel implements ModelInterface {
         }
 
         GroupTable.get(keyGroup).add_student(StudentTable.get(keyStudent));
-        Serializator.serialization(GroupTable, GroupFile);
     }
 
     @Override
@@ -215,15 +211,12 @@ public class FileModel implements ModelInterface {
         System.out.println("Создан объект класса Teacher");
 
         TeacherTable.put(TeacherTable.size() + 1, new Teacher(name, login, password));
-
-        Serializator.serialization(TeacherTable, TeacherFile);
     }
 
     @Override
     public void removeTeacher() {
         if (TeacherTable.size() != 0){
             TeacherTable.remove(TeacherTable.size());
-            Serializator.serialization(TeacherTable, TeacherFile);
         }
     }
 
@@ -239,7 +232,6 @@ public class FileModel implements ModelInterface {
         }
 
         TeacherTable.get(keyTeacher).add_discipline(DisciplineTable.get(keyDiscipline));
-        Serializator.serialization(TeacherTable, TeacherFile);
     }
 
     @Override
@@ -257,7 +249,6 @@ public class FileModel implements ModelInterface {
         }
 
         TeacherTable.get(keyTeacher).add_group(DisciplineTable.get(keyDiscipline), GroupTable.get(keyGroup));
-        Serializator.serialization(TeacherTable, TeacherFile);
     }
 
     @Override

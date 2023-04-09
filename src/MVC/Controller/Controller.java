@@ -20,6 +20,9 @@ public class Controller {
     public String ListenStr() {
         return scanner.next();
     }
+    public void saveChanges(){
+        fileModel.saveChanges();
+    }
 
     /*----------------------------DISCIPLINE----------------------------------*/
 

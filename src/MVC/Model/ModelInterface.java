@@ -1,7 +1,9 @@
 package MVC.Model;
 
 public interface ModelInterface {
-//    void setStudentDiscipline(String name, String type_grade, Integer value);
+    void saveChanges();
+    void readData();
+
     void setDiscipline(String name);
     void getDisciplines();
 

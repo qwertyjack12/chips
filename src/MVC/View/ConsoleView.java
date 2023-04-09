@@ -34,6 +34,7 @@ public class ConsoleView implements View {
         System.out.println("-> 2: Teacher");
         System.out.println("-> 3: Group");
         System.out.println("-> 4: Discipline");
+        System.out.println("-> 5: Save");
         System.out.println("-> 0: Close app");
         System.out.print("Your choice: ");
 
@@ -46,6 +47,7 @@ public class ConsoleView implements View {
             case 2 -> ShowTeachers();
             case 3 -> ShowGroups();
             case 4 -> ShowDisciplines();
+            case 5 -> controller.saveChanges();
             default -> ShowMenu();
         }
 
