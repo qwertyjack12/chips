@@ -1,6 +1,6 @@
-package Users;
+package users;
 
-import Discipline.Discipline;
+import discipline.Discipline;
 
 /**
  * Интерфейс для работы с классом Student

@@ -1,4 +1,4 @@
-package MVC.Model;
+package MVC.services;
 
 public interface ModelInterface {
     void saveChanges();

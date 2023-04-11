@@ -1,6 +1,6 @@
-package Groups;
+package groups;
 
-import Users.Student;
+import users.Student;
 
 public interface GroupInterface {
     void add_student(Student student);

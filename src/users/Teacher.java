@@ -1,7 +1,7 @@
-package Users;
+package users;
 
-import Groups.Group;
-import Discipline.Discipline;
+import groups.Group;
+import discipline.Discipline;
 
 import java.io.Serializable;
 import java.util.ArrayList;

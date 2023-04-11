@@ -1,4 +1,4 @@
-package MVC.View;
+package MVC.view;
 
 public interface View {
     int Listen();

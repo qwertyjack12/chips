@@ -1,6 +1,6 @@
-package Groups;
+package groups;
 
-import Users.Student;
+import users.Student;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package Users;
+package users;
 
-import Groups.Group;
-import Discipline.Discipline;
+import groups.Group;
+import discipline.Discipline;
 
 public interface TeacherInterface {
     void add_discipline(Discipline<?> discipline);

@@ -1,6 +1,6 @@
-package Users;
+package users;
 
-import Discipline.Discipline;
+import discipline.Discipline;
 
 import java.io.Serializable;
 import java.util.ArrayList;

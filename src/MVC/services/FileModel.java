@@ -1,13 +1,13 @@
-package MVC.Model;
+package MVC.services;
 
-import Groups.Group;
-import Discipline.Discipline;
-import Grade.ExamGrade;
-import Grade.OffsetGrade;
+import groups.Group;
+import discipline.Discipline;
+import grade.ExamGrade;
+import grade.OffsetGrade;
 import MVC.Deserializator;
 import MVC.Serializator;
-import Users.Student;
-import Users.Teacher;
+import users.Student;
+import users.Teacher;
 
 import java.io.FileReader;
 import java.io.IOException;

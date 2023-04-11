@@ -1,6 +1,6 @@
-package MVC.View;
+package MVC.view;
 
-import MVC.Controller.Controller;
+import MVC.controller.Controller;
 
 import java.util.Scanner;
 
