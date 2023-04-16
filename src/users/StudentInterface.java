@@ -13,19 +13,19 @@ public interface StudentInterface {
     /**
      * Функция добавляющая студенту дисциплину
      */
-    void append_discipline(Discipline<?> discipline);
+    void appendDiscipline(Discipline<?> discipline);
 
     /**
      * Функция удаления дисциплины у студента
      */
-    void remove_discipline(Discipline<?> discipline);
+    void removeDiscipline(Discipline<?> discipline);
 
     /**
      * Функция удаления дисциплины у студента
      */
-    void remove_discipline(int index);
+    void removeDiscipline(int index);
 
-    double get_rating();
+    double getRating();
 
-    String get_student_grades();
+    String getStudentGrades();
 }

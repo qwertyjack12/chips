@@ -14,6 +14,7 @@ import java.util.Objects;
  */
 
 public abstract class User implements Serializable {
+    protected int id;
     /**
      * Поле логина
      */
@@ -32,6 +33,9 @@ public abstract class User implements Serializable {
      */
     protected List<Discipline<?>> list;
 
+    public int getId() {
+        return id;
+    }
     /**
      * Процедура определения значения оценки {@link User#login}
      *

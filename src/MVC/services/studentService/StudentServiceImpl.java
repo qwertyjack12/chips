@@ -11,14 +11,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
-    private Hashtable<Integer, Student> StudentTable;
+    private Hashtable<Integer, Student> studentTable;
     private final String fileName = "src\\usedFiles\\Student.bin";
-
-    public StudentServiceImpl(){
-        this.readData();
-    }
 
     private void checkFIle(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
@@ -27,56 +23,71 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public void saveData() {
-        Serializator.serialization(StudentTable, fileName);
+        Serializator.serialization(studentTable, fileName);
     }
 
     @Override
     public void readData() {
         try {
             this.checkFIle(fileName);
-            this.StudentTable = Deserializator.getHashtable(fileName);
-        } catch (IOException e) {
-            this.StudentTable = new Hashtable<>();
+            this.studentTable = Deserializator.getHashtable(fileName);
+        } catch (IOException | ClassNotFoundException e) {
+            this.studentTable = new Hashtable<>();
         }
     }
 
     @Override
-    public void setStudent(String name, String login, String password) {
-        StudentTable.put(StudentTable.size() + 1, new Student(name, login, password));
+    public boolean checkStudentKey(Integer key) {
+        if (studentTable.containsKey(key)) {
+            return true;
+        } else {
+            System.out.println("Wrong student key input!");
+            return false;
+        }
     }
 
     @Override
-    public void addDiscipline(String DisciplineName, Integer DisciplineKey, String type_grade, Integer value, Integer key) {
-        if (type_grade.equals("exam")) {
-            StudentTable.get(key).append_discipline(new Discipline<>(DisciplineName, new ExamGrade(value)));
-        } else if (type_grade.equals("offset")) {
-            StudentTable.get(key).append_discipline(new Discipline<>(DisciplineName, new OffsetGrade(value)));
+    public void setStudent(int id, String name, String login, String password) {
+        studentTable.put(id, new Student(id, name, login, password));
+    }
+
+    @Override
+    public Student getStudent(Integer key) {
+        return studentTable.get(key);
+    }
+
+    @Override
+    public void addDiscipline(String DisciplineName, String typeGrade, Integer GradeValue, Integer studentKey) {
+        if (typeGrade.equals("exam")) {
+            studentTable.get(studentKey).appendDiscipline(new Discipline<>(DisciplineName, new ExamGrade(GradeValue)));
+        } else if (typeGrade.equals("offset")) {
+            studentTable.get(studentKey).appendDiscipline(new Discipline<>(DisciplineName, new OffsetGrade(GradeValue)));
         }
     }
 
     @Override
     public void getStudentsRating() {
-        for (int i = 1; i <= StudentTable.size(); i++) {
-            System.out.println(i + ": " + StudentTable.get(i).get_rating());
+        for (var x : studentTable.keySet()) {
+            System.out.println(x + ": " + studentTable.get(x).getRating());
         }
     }
 
     @Override
-    public void getStudentGrades(Integer key) {
-        System.out.println(StudentTable.get(key).get_student_grades());
+    public void getStudentGrades(Integer studentKey) {
+        System.out.println(studentTable.get(studentKey).getStudentGrades());
     }
 
     @Override
-    public void removeStudent() {
-        if (StudentTable.size() != 0) {
-            StudentTable.remove(StudentTable.size());
+    public void removeStudent(Integer key) {
+        if ((studentTable.size() != 0) & (studentTable.containsKey(key))) {
+            studentTable.remove(key);
         }
     }
 
     @Override
     public void getStudents() {
 
-        System.out.println(StudentTable);
+        System.out.println(studentTable);
 
     }
 

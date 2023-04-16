@@ -1,17 +1,20 @@
 package MVC.services.studentService;
 
-import java.util.Hashtable;
+import users.Student;
 
 public interface StudentService {
 
     void saveData();
     void readData();
 
-    void setStudent(String name, String login, String password);
-    void addDiscipline(String DisciplineName, Integer DisciplineKey, String type_grade, Integer value, Integer key);
+    boolean checkStudentKey(Integer key);
+
+    void setStudent(int id, String name, String login, String password);
+    Student getStudent(Integer key);
+    void addDiscipline(String DisciplineName, String typeGrade, Integer GradeValue, Integer studentKey);
     void getStudentsRating();
-    void getStudentGrades(Integer key);
+    void getStudentGrades(Integer studentKey);
     void getStudents();
-    void removeStudent();
+    void removeStudent(Integer key);
 
 }

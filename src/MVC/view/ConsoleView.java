@@ -1,33 +1,63 @@
 package MVC.view;
 
-import MVC.controller.Controller;
+import MVC.controllers.*;
 
 import java.util.Scanner;
 
 public class ConsoleView implements View {
-    private final Controller controller;
+    private  final DisciplineController disciplineController;
+    private  final GroupController groupController;
+    private  final StudentController studentController;
+    private  final TeacherController teacherController;
     private boolean flag;
 
-    public ConsoleView(Controller controller) {
+    public ConsoleView(DisciplineController disciplineController, GroupController groupController, StudentController studentController, TeacherController teacherController) {
         this.flag = true;
-        this.controller = controller;
+        this.disciplineController = disciplineController;
+        this.groupController = groupController;
+        this.studentController = studentController;
+        this.teacherController = teacherController;
     }
 
     @Override
-    public int Listen() {
+    public int listen() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
     @Override
-    public void Init() {
+    public void init() {
         while (this.flag) {
-            ShowMenu();
+            showMenu();
         }
     }
 
     @Override
-    public void ShowMenu() {
+    public void saveChanges() {
+        disciplineController.saveChanges();
+        groupController.saveChanges();
+        studentController.saveChanges();
+        teacherController.saveChanges();
+    }
+
+    @Override
+    public void readData() {
+        disciplineController.readData();
+        groupController.readData();
+        studentController.readData();
+        teacherController.readData();
+    }
+
+    @Override
+    public void closeThread() {
+        disciplineController.closeThread();
+        groupController.closeThread();
+        studentController.closeThread();
+        teacherController.closeThread();
+    }
+
+    @Override
+    public void showMenu() {
 
         System.out.println("Menu:");
         System.out.println("-> 1: Student");
@@ -35,26 +65,29 @@ public class ConsoleView implements View {
         System.out.println("-> 3: Group");
         System.out.println("-> 4: Discipline");
         System.out.println("-> 5: Save");
+        System.out.println("-> 6: Read");
         System.out.println("-> 0: Close app");
         System.out.print("Your choice: ");
 
-        switch (Listen()) {
+        switch (listen()) {
             case 0 -> {
                 this.flag = false;
+                this.closeThread();
                 return;
             }
-            case 1 -> ShowStudents();
-            case 2 -> ShowTeachers();
-            case 3 -> ShowGroups();
-            case 4 -> ShowDisciplines();
-            case 5 -> controller.saveChanges();
-            default -> ShowMenu();
+            case 1 -> showStudents();
+            case 2 -> showTeachers();
+            case 3 -> showGroups();
+            case 4 -> showDisciplines();
+            case 5 -> this.saveChanges();
+            case 6 -> this.readData();
+            default -> showMenu();
         }
 
     }
 
     @Override
-    public void ShowStudents() {
+    public void showStudents() {
         System.out.println("Students Menu:");
         System.out.println("-> 1: Add Student");
         System.out.println("-> 2: Remove Student");
@@ -65,22 +98,22 @@ public class ConsoleView implements View {
         System.out.println("-> 0: Back");
         System.out.print("Your choice: ");
 
-        switch (Listen()) {
+        switch (listen()) {
             case 0 -> {
-                ShowMenu();
+                showMenu();
             }
-            case 1 -> controller.setStudent();
-            case 2 -> controller.removeStudent();
-            case 3 -> controller.addDiscipline();
-            case 4 -> controller.getStudentsRating();
-            case 5 -> controller.getStudentGrades();
-            case 6 -> controller.getStudents();
-            default -> ShowMenu();
+            case 1 -> studentController.setStudent();
+            case 2 -> studentController.removeStudent();
+            case 3 -> studentController.addDiscipline();
+            case 4 -> studentController.getStudentsRating();
+            case 5 -> studentController.getStudentGrades();
+            case 6 -> studentController.getStudents();
+            default -> showMenu();
         }
     }
 
     @Override
-    public void ShowTeachers() {
+    public void showTeachers() {
         System.out.println("Teachers Menu:");
         System.out.println("-> 1: Add Teacher");
         System.out.println("-> 2: Remove Teacher");
@@ -91,22 +124,22 @@ public class ConsoleView implements View {
         System.out.println("-> 0: Back");
         System.out.print("Your choice: ");
 
-        switch (Listen()) {
+        switch (listen()) {
             case 0 -> {
-                ShowMenu();
+                showMenu();
             }
-            case 1 -> controller.setTeacher();
-            case 2 -> controller.removeTeacher();
-            case 3 -> controller.addTeacherDiscipline();
-            case 4 -> controller.addTeacherGroup();
-            case 5 -> controller.getTeachersDisciplines();
-            case 6 -> controller.getTeachers();
-            default -> ShowMenu();
+            case 1 -> teacherController.setTeacher();
+            case 2 -> teacherController.removeTeacher();
+            case 3 -> teacherController.addTeacherDiscipline();
+            case 4 -> teacherController.addTeacherGroup();
+            case 5 -> teacherController.getTeachersDisciplines();
+            case 6 -> teacherController.getTeachers();
+            default -> showMenu();
         }
     }
 
     @Override
-    public void ShowGroups() {
+    public void showGroups() {
         System.out.println("Groups Menu:");
         System.out.println("-> 1: Add Group");
         System.out.println("-> 2: Remove Group");
@@ -117,35 +150,35 @@ public class ConsoleView implements View {
         System.out.println("-> 0: Back");
         System.out.print("Your choice: ");
 
-        switch (Listen()) {
+        switch (listen()) {
             case 0 -> {
-                ShowMenu();
+                showMenu();
             }
-            case 1 -> controller.setGroup();
-            case 2 -> controller.removeGroup();
-            case 3 -> controller.removeStudentInGroup();
-            case 4 -> controller.addStudent();
-            case 5 -> controller.getGroupsRating();
-            case 6 -> controller.getGroups();
-            default -> ShowMenu();
+            case 1 -> groupController.setGroup();
+            case 2 -> groupController.removeGroup();
+            case 3 -> groupController.removeStudentInGroup();
+            case 4 -> groupController.addStudent();
+            case 5 -> groupController.getGroupsRating();
+            case 6 -> groupController.getGroups();
+            default -> showMenu();
         }
     }
 
     @Override
-    public void ShowDisciplines() {
+    public void showDisciplines() {
         System.out.println("Disciplines Menu:");
         System.out.println("-> 1: Add Discipline");
         System.out.println("-> 2: Show Disciplines");
         System.out.println("-> 0: Back");
         System.out.print("Your choice: ");
 
-        switch (Listen()) {
+        switch (listen()) {
             case 0 -> {
-                ShowMenu();
+                showMenu();
             }
-            case 1 -> controller.setDiscipline();
-            case 2 -> controller.getDisciplines();
-            default -> ShowMenu();
+            case 1 -> disciplineController.setDiscipline();
+            case 2 -> disciplineController.getDisciplines();
+            default -> showMenu();
         }
     }
 }

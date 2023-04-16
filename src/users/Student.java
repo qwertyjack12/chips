@@ -15,19 +15,16 @@ import java.util.List;
 
 public class Student extends User implements StudentInterface, Serializable {
 
-    public Student(){
-        this.name = "Excuse me Student?";
-    }
-
     /**
      * Конструктор - создание нового объекта с определенными значениями
      *
      * @param name     - name
      * @param login    - login
      * @param password - password
-     * @see Student#Student(String, String, String)
+     * @see Student#Student(int, String, String, String)
      */
-    public Student(String name, String login, String password) {
+    public Student(int id, String name, String login, String password) {
+        this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
@@ -38,7 +35,7 @@ public class Student extends User implements StudentInterface, Serializable {
      * Переопределение функции append_discipline интерфейса StudentInterface
      */
     @Override
-    public void append_discipline(Discipline<?> discipline) {
+    public void appendDiscipline(Discipline<?> discipline) {
         list.add(discipline);
     }
 
@@ -46,7 +43,7 @@ public class Student extends User implements StudentInterface, Serializable {
      * Переопределение функции remove_discipline интерфейса StudentInterface
      */
     @Override
-    public void remove_discipline(Discipline<?> discipline) {
+    public void removeDiscipline(Discipline<?> discipline) {
         list.remove(discipline);
     }
 
@@ -54,12 +51,12 @@ public class Student extends User implements StudentInterface, Serializable {
      * Переопределение функции remove_discipline интерфейса StudentInterface
      */
     @Override
-    public void remove_discipline(int index) {
+    public void removeDiscipline(int index) {
         list.remove(index);
     }
 
     @Override
-    public double get_rating() {
+    public double getRating() {
         double total = 0;
         for (Discipline<?> discipline : list) {
             total += discipline.getGrade().getValue();
@@ -72,7 +69,7 @@ public class Student extends User implements StudentInterface, Serializable {
     }
 
     @Override
-    public String get_student_grades() {
+    public String getStudentGrades() {
         List<String> output = new ArrayList<>();
         for (Discipline<?> discipline : list) {
             output.add(discipline.getName() + " " + discipline.getGrade().getValue() + " " + discipline.getGrade().toString());

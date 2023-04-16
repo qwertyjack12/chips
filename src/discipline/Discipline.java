@@ -12,6 +12,7 @@ import java.io.Serializable;
  */
 
 public class Discipline<T extends Grade> implements Serializable{
+    protected int id;
     /**
      * Поле название дисциплины
      */
@@ -43,9 +44,10 @@ public class Discipline<T extends Grade> implements Serializable{
      * Конструктор - создание нового объекта с определенным значениямия
      *
      * @param name - название дисциплины
-     * @see Discipline#Discipline(String)
+     * @see Discipline#Discipline(int, String)
      */
-    public Discipline(String name) {
+    public Discipline(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 

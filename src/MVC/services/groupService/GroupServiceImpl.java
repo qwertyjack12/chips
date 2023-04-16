@@ -9,14 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
-public class GroupServiceImpl implements GroupService{
+public class GroupServiceImpl implements GroupService {
 
-    private Hashtable<Integer, Group> GroupTable;
+    private Hashtable<Integer, Group> groupTable;
     private final String fileName = "src\\usedFiles\\Group.bin";
-
-    public GroupServiceImpl(){
-        this.readData();
-    }
 
     private void checkFIle(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
@@ -25,53 +21,66 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public void saveData() {
-        Serializator.serialization(GroupTable, fileName);
+        Serializator.serialization(groupTable, fileName);
     }
 
     @Override
     public void readData() {
         try {
             this.checkFIle(fileName);
-            this.GroupTable = Deserializator.getHashtable(fileName);
-        } catch (IOException e) {
-            this.GroupTable = new Hashtable<>();
+            this.groupTable = Deserializator.getHashtable(fileName);
+        } catch (IOException | ClassNotFoundException e) {
+            this.groupTable = new Hashtable<>();
         }
     }
 
     @Override
-    public void setGroup(String name) {
-        GroupTable.put(GroupTable.size() + 1, new Group(name));
+    public boolean checkGroupKey(Integer key) {
+        if (groupTable.containsKey(key)) {
+            return true;
+        } else {
+            System.out.println("Wrong group key input!");
+            return false;
+        }
     }
 
     @Override
-    public void removeGroup() {
-        if (GroupTable.size() != 0) {
-            GroupTable.remove(GroupTable.size());
+    public void setGroup(int id, String name) {
+        groupTable.put(id, new Group(id, name));
+    }
+
+    @Override
+    public Group getGroup(Integer key) {
+        return groupTable.get(key);
+    }
+
+    @Override
+    public void removeGroup(Integer key) {
+        if ((groupTable.size() != 0) & (groupTable.containsKey(key))) {
+            groupTable.remove(key);
         }
     }
 
     @Override
     public void removeStudentInGroup(Integer keyGroup, Integer keyStudent) {
-        GroupTable.get(keyGroup).remove_student(keyStudent - 1);
+        groupTable.get(keyGroup).removeStudent(keyStudent - 1);
     }
 
     @Override
     public void addStudent(Student student, Integer keyGroup) {
-        GroupTable.get(keyGroup).add_student(student);
+        groupTable.get(keyGroup).addStudent(student);
     }
 
     @Override
     public void getGroupsRating() {
-        for (int i = 1; i <= GroupTable.size(); i++) {
-            System.out.println(GroupTable.get(i).get_rating());
+        for (var x : groupTable.keySet()) {
+            System.out.println(x + ": " + groupTable.get(x).getRating());
         }
     }
 
     @Override
     public void getGroups() {
-
-        System.out.println(GroupTable);
-
+        System.out.println(groupTable);
     }
 
 }

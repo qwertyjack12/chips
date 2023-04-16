@@ -8,14 +8,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
-public class DisciplineServiceImpl implements DisciplineService{
+public class DisciplineServiceImpl implements DisciplineService {
 
-    private Hashtable<Integer, Discipline<?>> DisciplineTable;
+    private Hashtable<Integer, Discipline<?>> disciplineTable;
     private final String fileName = "src\\usedFiles\\Discipline.bin";
-
-    public DisciplineServiceImpl(){
-        this.readData();
-    }
 
     private void checkFIle(String filename) throws IOException {
         FileReader fileReader = new FileReader(filename);
@@ -24,27 +20,41 @@ public class DisciplineServiceImpl implements DisciplineService{
 
     @Override
     public void saveData() {
-        Serializator.serialization(DisciplineTable, fileName);
+        Serializator.serialization(disciplineTable, fileName);
     }
 
     @Override
     public void readData() {
         try {
             this.checkFIle(fileName);
-            this.DisciplineTable = Deserializator.getHashtable(fileName);
-        } catch (IOException e) {
-            this.DisciplineTable = new Hashtable<>();
+            this.disciplineTable = Deserializator.getHashtable(fileName);
+        } catch (IOException|ClassNotFoundException e) {
+            this.disciplineTable = new Hashtable<>();
         }
     }
 
     @Override
-    public void setDiscipline(String name) {
-        DisciplineTable.put(DisciplineTable.size() + 1, new Discipline<>(name));
+    public boolean checkDisciplineKey(Integer key) {
+        if (disciplineTable.containsKey(key)){
+            return true;
+        }else {
+            System.out.println("Wrong discipline key input!");
+            return false;
+        }
+    }
+
+    @Override
+    public void setDiscipline(int id, String name) {
+        disciplineTable.put(id, new Discipline<>(id, name));
+    }
+
+    @Override
+    public Discipline<?> getDiscipline(Integer key) {
+        return disciplineTable.get(key);
     }
 
     @Override
     public void getDisciplines() {
-        System.out.println(DisciplineTable);
+        System.out.println(disciplineTable);
     }
-
 }

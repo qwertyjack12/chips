@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group implements GroupInterface, Serializable {
+    protected int id;
     protected String name;
     protected List<Student> studentList;
 
@@ -14,7 +15,8 @@ public class Group implements GroupInterface, Serializable {
         this.name = "Excuse me Group?";
     }
 
-    public Group(String name) {
+    public Group(int id, String name) {
+        this.id = id;
         this.name = name;
         this.studentList = new ArrayList<>();
     }
@@ -32,25 +34,25 @@ public class Group implements GroupInterface, Serializable {
     }
 
     @Override
-    public void add_student(Student student) {
+    public void addStudent(Student student) {
         studentList.add(student);
     }
 
     @Override
-    public void remove_student(Student student) {
+    public void removeStudent(Student student) {
         studentList.remove(student);
     }
 
     @Override
-    public void remove_student(int index) {
+    public void removeStudent(int index) {
         studentList.remove(index);
     }
 
     @Override
-    public double get_rating() {
+    public double getRating() {
         double total = 0;
         for (Student student : studentList) {
-            total += student.get_rating();
+            total += student.getRating();
         }
         return total / studentList.size();
     }

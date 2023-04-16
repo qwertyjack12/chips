@@ -1,17 +1,20 @@
 package MVC.view;
 
 public interface View {
-    int Listen();
+    int listen();
 
-    void Init();
+    void init();
+    void saveChanges();
+    void readData();
+    void closeThread();
 
-    void ShowMenu();
+    void showMenu();
 
-    void ShowStudents();
+    void showStudents();
 
-    void ShowTeachers();
+    void showTeachers();
 
-    void ShowGroups();
+    void showGroups();
 
-    void ShowDisciplines();
+    void showDisciplines();
 }
