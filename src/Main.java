@@ -23,6 +23,7 @@ public class Main {
 
         ConsoleView consoleView = new ConsoleView(disciplineController, groupController, studentController, teacherController);
 
+        consoleView.readData();
         consoleView.init();
     }
 }

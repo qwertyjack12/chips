@@ -65,7 +65,6 @@ public class ConsoleView implements View {
         System.out.println("-> 3: Group");
         System.out.println("-> 4: Discipline");
         System.out.println("-> 5: Save");
-        System.out.println("-> 6: Read");
         System.out.println("-> 0: Close app");
         System.out.print("Your choice: ");
 
@@ -80,7 +79,6 @@ public class ConsoleView implements View {
             case 3 -> showGroups();
             case 4 -> showDisciplines();
             case 5 -> this.saveChanges();
-            case 6 -> this.readData();
             default -> showMenu();
         }
 
