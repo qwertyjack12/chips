@@ -62,8 +62,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void removeStudentInGroup(Integer keyGroup, Integer keyStudent) {
-        groupTable.get(keyGroup).removeStudent(keyStudent - 1);
+    public void removeStudentInGroup(Integer keyGroup, Student student) {
+        groupTable.get(keyGroup).removeStudent(student);
     }
 
     @Override

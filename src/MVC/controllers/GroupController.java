@@ -59,8 +59,12 @@ public class GroupController {
     }
 
     public void removeGroup() {
+        groupService.getGroups();
         System.out.print("id of group: ");
         int key = listenInt();
+        if (!groupService.checkGroupKey(key)){
+            return;
+        }
         groupService.removeGroup(key);
     }
 
@@ -79,7 +83,7 @@ public class GroupController {
             return;
         }
 
-        groupService.removeStudentInGroup(keyGroup, keyStudent);
+        groupService.removeStudentInGroup(keyGroup, studentService.getStudent(keyStudent));
     }
 
     public void addStudent() {

@@ -86,9 +86,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void getStudents() {
-
         System.out.println(studentTable);
-
     }
 
 }

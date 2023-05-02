@@ -12,7 +12,7 @@ public interface GroupService {
     void setGroup(int id, String name);
     Group getGroup(Integer key);
     void removeGroup(Integer key);
-    void removeStudentInGroup(Integer keyGroup, Integer keyStudent);
+    void removeStudentInGroup(Integer keyGroup, Student Student);
     void addStudent(Student student, Integer keyGroup);
     void getGroupsRating();
     void getGroups();

@@ -66,6 +66,9 @@ public class TeacherController {
     public void removeTeacher() {
         System.out.print("id of teacher: ");
         int key = listenInt();
+        if (!teacherService.checkTeacherKey(key)){
+            return;
+        }
         teacherService.removeTeacher(key);
     }
 

@@ -113,8 +113,12 @@ public class StudentController {
     }
 
     public void removeStudent() {
+        studentService.getStudents();
         System.out.print("id of student: ");
         int key = listenInt();
+        if (!studentService.checkStudentKey(key)){
+            return;
+        }
         studentService.removeStudent(key);
     }
 
